@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home — QuickTodo{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+  <div class="p-5 shadow-lg text-center rounded-4"
+       style="border: 2px solid #8ec5ff; max-width: 700px; width: 100%; background: white;">
+
+    <h1 class="fw-bold mb-3" style="color:#0f172a;">Organize your day beautifully</h1>
+    
+    <p class="lead mb-4" style="color:#475569;">
+      “Manage your to-dos effortlessly and stay productive”
+    </p>
+
+    <a href="{{ url_for('register') }}" 
+       class="btn btn-primary btn-lg px-5 py-3"
+       style="border-radius: 40px; font-size: 1.1rem;">
+       Get Started
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

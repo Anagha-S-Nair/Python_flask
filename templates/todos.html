@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}My Todos{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-start" style="min-height: 80vh; padding-top: 40px;">
+  <div class="card shadow-lg p-4 rounded-4"
+       style="border: none; max-width: 600px; width: 100%; background: #ffffff;">
+
+    <!-- Page Title -->
+    <h3 class="fw-bold mb-4 text-center" style="color: #0f172a; letter-spacing: 0.5px;">
+      My Tasks
+    </h3>
+
+    <!-- Add New Task -->
+    <form method="post" action="{{ url_for('add_todo') }}" class="mb-4">
+      <div class="input-group">
+        <input name="title"
+               class="form-control form-control-lg"
+               placeholder="Add a new task..."
+               required
+               style="border-radius: 12px; font-size: 1rem;">
+
+        <button class="btn btn-primary btn-lg px-4"
+                style="border-radius: 12px; font-size: 1rem;">
+          Add
+        </button>
+      </div>
+    </form>
+    <br>
+    
+
+    {% if todos %}
+
+      <!-- Header Row -->
+      <div class="d-flex justify-content-between px-1 py-2"
+           style="font-weight: 600; color:#475569; font-size: 0.95rem; border-bottom: 2px solid #e2e8f0;">
+        <span class="w-75">Task</span>
+        <span class="w-25 text-end">Action</span>
+      </div>
+
+      <!-- Task List -->
+      <ul class="list-group list-group-flush mt-2">
+
+        {% for t in todos %}
+        <li class="list-group-item py-3"
+            style="display: flex; justify-content: space-between; align-items: center; border: none; border-bottom: 1px solid #e5e7eb;">
+
+          <!-- Task Text -->
+          <div class="w-75">
+            <span class="fs-5 {% if t.done %}text-decoration-line-through text-muted{% endif %}"
+                  style="word-wrap: break-word;">
+              {{ t.title }}
+            </span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="w-25 text-end">
+
+            {% if not t.done %}
+              <div class="d-flex justify-content-end gap-2">
+
+                <!-- Complete -->
+                <form method="post" action="{{ url_for('toggle', tid=t.id) }}">
+                  <button class="btn btn-success btn-sm px-3 py-1"
+                          style="border-radius: 8px; font-size: 0.8rem;">
+                    Complete
+                  </button>
+                </form>
+
+                <!-- Delete -->
+                <form method="post" action="{{ url_for('delete', tid=t.id) }}">
+                  <button class="btn btn-danger btn-sm px-3 py-1"
+                          style="border-radius: 8px; font-size: 0.8rem;">
+                    Delete
+                  </button>
+                </form>
+
+              </div>
+
+            {% else %}
+              <!-- Completed Badge -->
+              <span class="badge bg-success px-3 py-2"
+                    style="border-radius: 12px; font-size: 0.85rem;">
+                Completed
+              </span>
+            {% endif %}
+
+          </div>
+
+        </li>
+        {% endfor %}
+
+      </ul>
+
+    {% else %}
+      <p class="text-center text-muted py-4" style="font-size: 1.1rem;">
+        No tasks added yet 
+      </p>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}
