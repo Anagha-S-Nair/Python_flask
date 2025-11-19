@@ -1,19 +1,19 @@
 body {
-  background:#eef2ff; /* soft lavender-blue */
-  font-family: Inter, sans-serif;
-}
-
-.nav-glass {
-  background: linear-gradient(90deg, #7aaeff, #caa8ff);
-}
-
-.btn-primary {
-  background-color: #6c63ff;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #5848ff !important;
-  transform: translateY(-2px);
-  transition: 0.2s;
-}
+    background:#eef2ff; /* soft lavender-blue */
+    font-family: Inter, sans-serif;
+  }
+  
+  .nav-glass {
+    background: linear-gradient(90deg, #7aaeff, #caa8ff);
+  }
+  
+  .btn-primary {
+    background-color: rgb(145, 139, 255);
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #5848ff !important;
+    transform: translateY(-2px);
+    transition: 0.2s;
+  }

@@ -8,26 +8,27 @@
 <body>
 <nav class="navbar navbar-dark nav-glass p-3">
   <div class="container">
-    <a class="navbar-brand" href="{{ url_for('index') }}">QuickTodo</a>
+    <a class="navbar-brand" href="{{ url_for('index') }}">To-do-List</a>
+
+    <!-- No login, no logout -->
     <div>
       {% if session.get('user') %}
         <span class="text-white me-3">Hi, {{ session.get('user') }}</span>
-        <a class="btn btn-outline-light btn-sm" href="{{ url_for('logout') }}">Logout</a>
-      {% else %}
-        <a class="btn btn-outline-light btn-sm" href="{{ url_for('login') }}">Login</a>
       {% endif %}
     </div>
+
   </div>
 </nav>
 
 <div class="container mt-4">
   {% with messages=get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      {% for cat,msg in messages %}
+      {% for cat, msg in messages %}
       <div class="alert alert-{{cat}}">{{msg}}</div>
       {% endfor %}
     {% endif %}
   {% endwith %}
+  
   {% block content %}{% endblock %}
 </div>
 
